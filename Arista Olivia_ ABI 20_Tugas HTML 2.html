@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stata Star Collection Shop</title>
+  <style>
+    /* RESET & GLOBAL */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* HEADER */
+    header {
+      background-color: #0ace07;
+      color: white;
+      padding: 15px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .search-bar input {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      width: 200px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* HERO / BERANDA */
+    .hero {
+      background-color: #e9f2ff;
+      padding: 40px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      color: #0ace07;
+    }
+
+    /* PRODUK */
+    #produk h3 {
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      color: #0ace07;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .product-content {
+      text-align: center;
+    }
+
+    .product .price {
+      font-weight: bold;
+      color: #1b0789;
+      margin: 10px 0;
+    }
+
+    .btn {
+      background-color: #0ace07;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      margin-top: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0ace07;
+    }
+
+    /* KERANJANG */
+    .cart {
+      margin-top: 40px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .cart ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .cart li img {
+      width: 80px;
+      height: auto;
+      margin-right: 15px;
+      border-radius: 4px;
+    }
+
+    .cart li button {
+      background-color: #d38440;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .cart li button:hover {
+      background-color: rgb(244, 114, 14);
+    }
+
+    #cart-total {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #0ace07;
+    }
+
+    /* KONTAK */
+    .contact {
+      margin-top: 40px;
+      background: #e9f2ff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .contact h3 {
+      color: #00ffa6;
+      margin-bottom: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #2f2929;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .footer-links a {
+      color: #f8f9fa;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsif */
+  @media (min-width: 320px) { .products { grid-template-columns: 1fr; } }
+  @media (min-width: 768px) { .products {  grid-template-columns: repeat(2, 1fr);   } }
+  @media (min-width: 1200px) { .products {  grid-template-columns: repeat(3, 1fr);  } }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .search-bar input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">Stata Star Collection</div>
+
+      <nav>
+        <ul>
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#produk">Produk</a></li>
+          <li><a href="#keranjang">Keranjang</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BERANDA -->
+  <section id="beranda" class="container">
+    <div class="hero">
+      <h2>Wujudkan Suasana Rumah Impian Anda</h2>
+    </div>
+    <p>
+      Kamu ingin punya furniture yang khusus sesuai keinginanmu? Ayo pesan sekarang di Stata Star Collection!
+     <P>-Lemari</P>
+     <P>-Kursi</P>
+     <P>-Meja</P>
+     <p>-Kitchenset</p>
+     <p>-Rak TV</p>
+     <P>-dll.</P>
+    </p>
+  </section>
+
+  <!-- PRODUK -->
+  <main class="container">
+    <section id="produk">
+      <h3>Produk Populer</h3>
+      <div class="product-grid">
+        <article class="product">
+          <img src="c:\Users\HP\OneDrive\文档\Lemari elegant.jpg" alt="Lemari Elegant">
+          <div class="product-content">
+            <h3>Lemari Elegant</h3>
+            <p class="description">Lemari dengan dilengkapi lampu penerang,desain menarik,kualitas bahan terbaik,dan berlapis HPL sebagai finishing.</p>
+            <p class="price">Rp 4.600.000</p>
+            <button class="btn"
+              onclick="addToCart('Produk A', 4600000, 'c:\Users\HP\OneDrive\文档\Lemari elegant.jpg')">
+              + Keranjang
+            </button>
+          </div>
+        </article>
+        <article class="product">
+          <img src="c:\Users\HP\OneDrive\文档\lemari baju.jpg" alt="Lemari Baju">
+          <div class="product-content">
+            <h3>Lemari Baju</h3>
+            <p class="description">Lemari baju dengan desain menarik,dilengkapi lampu penerang,warna menyesuaikan keinginan konsumen,dan tersedia laci dalam lemari untuk menyimpan barang-barang berharga.</p>
+            <p class="price">Rp 3.000.000</p>
+            <button class="btn"
+              onclick="addToCart('Produk B', 3000000, 'c:\Users\HP\OneDrive\文档\lemari baju.jpg')">
+              + Keranjang
+            </button>
+          </div>
+        </article>
+        <article class="product">
+          <img src="c:\Users\HP\OneDrive\文档\kursi kayu.jpg" alt="Kursi Kayu">
+          <div class="product-content">
+            <h3>Kursi Kayu</h3>
+            <p class="description">Kursi kayu jati dengan model terbaik dan bisa ditambahkan dengan bantal sofa.</p>
+            <p class="price">Rp 550.000</p>
+            <button class="btn"
+              onclick="addToCart('Produk C', 550000, 'c:\Users\HP\OneDrive\文档\kursi kayu.jpg')">
+              + Keranjang
+            </button>
+          </div>
+        </article>
+        <article class="product">
+          <img src="c:\Users\HP\OneDrive\文档\lemari tv.jpg" alt="Lemari TV">
+          <div class="product-content">
+            <h3>Lemari TV</h3>
+            <p class="description">Lemari TV dengan model modern dan warna klasik yang menarik.Tersedia laci untuk penyimpanan barang</p>
+            <p class="price">Rp 1.500.000</p>
+            <button class="btn"
+              onclick="addToCart('Produk D', 1500000, 'c:\Users\HP\OneDrive\文档\lemari tv.jpg')">
+              + Keranjang
+            </button>
+          </div>
+        </article>
+        <article class="product">
+          <img src="c:\Users\HP\OneDrive\文档\meja kayu.jpg" alt="Meja Kayu">
+          <div class="product-content">
+            <h3>Meja Kayu</h3>
+            <p class="description">Meja kayu jati dengan lapisan cat kayu dan model unik terbaik.</p>
+            <p class="price">Rp 500.000</p>
+            <button class="btn"
+              onclick="addToCart('Produk D', 500000, 'c:\Users\HP\OneDrive\文档\meja kayu.jpg')">
+              + Keranjang
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- KERANJANG -->
+    <section id="keranjang" class="cart">
+      <h3>Keranjang Belanja</h3>
+      <div id="cart-items">
+        <p>Keranjang kosong.</p>
+      </div>
+      <p id="cart-total">Total: Rp0</p>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="contact">
+      <h3>Informasi Kontak</h3>
+      <p>Telepon: 0831-8574-8084</p>
+      <p>Instagram: StataStar_Collection</p>
+      <p>Email: StataStarCollections@gmail.com</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Stata Star Collection. Hak Cipta Dilindungi.</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const cart = [];
+
+    function addToCart(name, price, img) {
+      cart.push({ name, price, img });
+      renderCart();
+      document.getElementById('keranjang').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderCart() {
+      const cartItemsDiv = document.getElementById('cart-items');
+      const cartTotalP = document.getElementById('cart-total');
+      cartItemsDiv.innerHTML = '';
+
+      if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<p>Keranjang kosong.</p>';
+        cartTotalP.textContent = 'Total: Rp0';
+        return;
+      }
+
+      let total = 0;
+      const ul = document.createElement('ul');
+
+      cart.forEach((item, idx) => {
+        total += item.price;
+
+        const li = document.createElement('li');
+        const imgEl = document.createElement('img');
+        imgEl.src = item.img;
+        imgEl.alt = item.name;
+
+        const info = document.createElement('div');
+        info.innerHTML = `<strong>${item.name}</strong><br>Rp${item.price.toLocaleString()}`;
+        info.style.marginRight = '1rem';
+
+        const btn = document.createElement('button');
+        btn.textContent = 'Hapus';
+        btn.onclick = () => {
+          cart.splice(idx, 1);
+          renderCart();
+        };
+
+        li.append(imgEl, info, btn);
+        ul.appendChild(li);
+      });
+
+      cartItemsDiv.appendChild(ul);
+      cartTotalP.textContent = 'Total: Rp' + total.toLocaleString();
+    }
+  </script>
+
+</body>
+</html>
